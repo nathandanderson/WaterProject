@@ -16,9 +16,14 @@ namespace WaterProject.Controllers
             repo = temp;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageNum = 1)
         {
-            var blah = repo.Projects.ToList();
+            int pageSize = 5;
+
+            var blah = repo.Projects
+                .OrderBy(p => p.ProjectName)
+                .Skip(pageSize*(pageNum-1))
+                .Take(pageSize);
 
             return View(blah);
         }

@@ -2,7 +2,9 @@
 @{
 }
 
-@model List<Project>
+@model IQueryable<Project>
+
+<h1>@ViewBag.Calc</h1>
 <h1>The Water Project</h1>
 
 @foreach (Project p in Model)
@@ -18,3 +20,8 @@
 
     <br />
 }
+
+<a asp-action="Index" asp-route-pageNum="1">1</a>
+<a asp-action="Index" asp-route-pageNum="2">2</a>
+<a asp-action="Index" asp-route-pageNum="3">3</a>
+
