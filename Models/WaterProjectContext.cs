@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WaterProject.Models
 {
-    public partial class WaterProjectContext : DbContext
+    public class WaterProjectContext : DbContext
     {
         public WaterProjectContext()
         {
@@ -19,31 +19,7 @@ namespace WaterProject.Models
         {
         }
 
-        public virtual DbSet<Project> Projects { get; set; }
+        public DbSet<Project> Projects { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlite("Data Source = WaterProject.sqlite");
-            }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Project>(entity =>
-            {
-                entity.HasKey(e => e.ProjectId);
-
-                entity.Property(e => e.ProjectId).ValueGeneratedNever();
-
-                entity.Property(e => e.ProjectName).IsRequired();
-            });
-
-            OnModelCreatingPartial(modelBuilder);
-        }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
