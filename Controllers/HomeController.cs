@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WaterProject.Models;
+using WaterProject.Models.ViewModels;
 
 namespace WaterProject.Controllers
 {
@@ -20,12 +21,22 @@ namespace WaterProject.Controllers
         {
             int pageSize = 5;
 
-            var blah = repo.Projects
+            var x = new ProjectsViewModel
+            {
+                Projects = repo.Projects
                 .OrderBy(p => p.ProjectName)
-                .Skip(pageSize*(pageNum-1))
-                .Take(pageSize);
+                .Skip(pageSize * (pageNum - 1))
+                .Take(pageSize),
 
-            return View(blah);
+                PageInfo = new PageInfo
+                {
+                    TotalNumProjects = repo.Projects.Count(),
+                    ProjectsPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
 
     }
