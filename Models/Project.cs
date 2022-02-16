@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace WaterProject.Models
 {
-    public partial class Projects
+    public partial class Project
     {
         public long ProjectId { get; set; }
         public string ProjectName { get; set; }
