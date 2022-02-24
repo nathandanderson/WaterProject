@@ -51,10 +51,19 @@ namespace WaterProject
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("typepage",
+                    //I haven't specified the name and pattern like below, they aren't necessary but are nice when you are learning.
+                    "{projectType}/Page{pageNum}",
+                    new { Controller = "Home", action = "Index" }
+                    );
+
                 endpoints.MapControllerRoute(
                     name: "Paging",
                     pattern: "Page{pageNum}",
-                    defaults: new { Controller = "Home", action = "Index" });
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+
+                endpoints.MapControllerRoute("type", "{projectType}",
+                    new { Controller = "Home", action = "Index", pageNum = 1 });
 
                 endpoints.MapDefaultControllerRoute();
             });
