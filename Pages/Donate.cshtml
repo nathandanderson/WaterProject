@@ -21,8 +21,8 @@
                 <tr>
                     <td>@i.Project.ProjectName</td>
                     <td>@i.Quantity</td>
-                    <td>25</td>
-                    <td>@(i.Quantity*25)</td>
+                    <td>$25.00</td>
+                    <td>@((i.Quantity*25).ToString("c"))</td>
                 </tr>
             }
     </tbody>
