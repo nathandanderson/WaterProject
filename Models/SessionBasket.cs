@@ -17,11 +17,13 @@ namespace WaterProject.Models
 
             SessionBasket basket = session?.GetJson<SessionBasket>("Basket") ?? new SessionBasket();
 
+            basket.Session = session;
+
             return basket;
         }
 
         [JsonIgnore]
-        public ISession Session { get; set; }
+        public ISession Session { get; set; } 
 
 
 
